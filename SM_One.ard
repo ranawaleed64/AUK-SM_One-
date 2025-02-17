@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AddOnRegData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" SlientInstallation="No" SlientUpgrade="No" Partnernmsp="MMS" SchemaVersion="3.0" Type="" MultipleVersion="false" OnDemand="" OnPremise="" ExtName="SM_One" ExtVersion="1.9.5" Contdata="Dev" Partner="MMS" DBType="HANA" ClientType="A">
+  <Validity>
+    <SBOCompatibility>
+      <Version From="" To="" />
+    </SBOCompatibility>
+  </Validity>
+  <Configuration>
+    <Repository>
+      <Properties />
+    </Repository>
+    <Deployment>
+      <Properties />
+    </Deployment>
+    <Assignment>
+      <Properties />
+    </Assignment>
+  </Configuration>
+  <Addons>
+    <Addon Name="" Group="" ForceFlag="" Visible="" AutoAssign="" SelfUpgrd="">
+      <x86 AddonExe="D:\My Work\All Source Code\SM_One - AUK\SM_One\bin\Debug\SM_One.exe" AddonSig="">
+        <Installation>
+          <Files>
+            <File FileName="Dapper.dll">
+              <Actions />
+            </File>
+            <File FileName="Dapper.xml">
+              <Actions />
+            </File>
+            <File FileName="SAPBusinessOneSDK.dll">
+              <Actions />
+            </File>
+            <File FileName="SM_One.b1s">
+              <Actions />
+            </File>
+            <File FileName="SM_One.exe">
+              <Actions />
+            </File>
+            <File FileName="student.bmp">
+              <Actions />
+            </File>
+            <File FileName="UniPic.jpg">
+              <Actions />
+            </File>
+          </Files>
+        </Installation>
+        <Uninstallation>
+          <Files>
+            <File FileName="Dapper.dll">
+              <Actions />
+            </File>
+            <File FileName="Dapper.xml">
+              <Actions />
+            </File>
+            <File FileName="SAPBusinessOneSDK.dll">
+              <Actions />
+            </File>
+            <File FileName="SM_One.b1s">
+              <Actions />
+            </File>
+            <File FileName="SM_One.exe">
+              <Actions />
+            </File>
+            <File FileName="student.bmp">
+              <Actions />
+            </File>
+            <File FileName="UniPic.jpg">
+              <Actions />
+            </File>
+          </Files>
+        </Uninstallation>
+      </x86>
+      <x64 AddonExe="D:\My Work\All Source Code\SM_One - AUK\SM_One\bin\x64\Debug\SM_One.exe" AddonSig="">
+        <Installation>
+          <Files>
+            <File FileName="Dapper.dll">
+              <Actions />
+            </File>
+            <File FileName="Dapper.xml">
+              <Actions />
+            </File>
+            <File FileName="SAPBusinessOneSDK.dll">
+              <Actions />
+            </File>
+            <File FileName="SM_One.b1s">
+              <Actions />
+            </File>
+            <File FileName="SM_One.exe">
+              <Actions />
+            </File>
+            <File FileName="student.bmp">
+              <Actions />
+            </File>
+            <File FileName="UniPic.jpg">
+              <Actions />
+            </File>
+          </Files>
+        </Installation>
+        <Uninstallation>
+          <Files>
+            <File FileName="Dapper.dll">
+              <Actions />
+            </File>
+            <File FileName="Dapper.xml">
+              <Actions />
+            </File>
+            <File FileName="SAPBusinessOneSDK.dll">
+              <Actions />
+            </File>
+            <File FileName="SM_One.b1s">
+              <Actions />
+            </File>
+            <File FileName="SM_One.exe">
+              <Actions />
+            </File>
+            <File FileName="student.bmp">
+              <Actions />
+            </File>
+            <File FileName="UniPic.jpg">
+              <Actions />
+            </File>
+          </Files>
+        </Uninstallation>
+      </x64>
+    </Addon>
+  </Addons>
+  <XApps>
+    <XApp Name="" Path="" FileName="" />
+  </XApps>
+  <UDQs>
+    <UDQ udqname="">
+      <Hana FileName="" />
+    </UDQ>
+  </UDQs>
+</AddOnRegData>
