@@ -658,6 +658,7 @@ inner join OINV T2 on T2.""DocEntry"" = T1.""U_InvEntry""  inner join ""@OING"" 
             //This Code Change By waleed
             string remainingHours = string.Format("Select [U_SchrCHours],[U_AttmptCHours] from OCRD where [CardCode] = '" + oRec.Fields.Item("CardCode").Value.ToString() + "'").Replace("[", "\"").Replace("]", "\"");
             oRecCus.DoQuery(remainingHours);
+            string CreditRem = oRecCus.Fields.Item("U_AttmptCHours").Value.ToString();
             oDoc.CardCode = oRec.Fields.Item("CardCode").Value.ToString();
             oDoc.DiscountPercent = HDiscountPC;
             oDoc.UserFields.Fields.Item("U_SendInvoice").Value = Config.SendInvoice;
