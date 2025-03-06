@@ -531,11 +531,11 @@ inner join OINV T2 on T2.""DocEntry"" = T1.""U_InvEntry""  inner join ""@OING"" 
                 //}
                 if (Global.Comp_DI.DbServerType == BoDataServerTypes.dst_HANADB)
                 {
-                    Query = "Select TO_VARCHAR(T0.\"U_DocDate\",'" + Global._dateFormat.ToUpper() + "') as \"DocDate\",TO_VARCHAR(T0.\"U_DueDate\",'" + Global._dateFormat.ToUpper() + "') as \"DueDate\",T1.\"U_StudentCode\" as \"CardCode\",TO_VARCHAR(T2.\"U_StartDate\",'" + Global._dateFormat.ToUpper() + "') as \"StartDate\",TO_VARCHAR(T2.\"U_EndDate\",'" + Global._dateFormat.ToUpper() + "') as \"EndDate\",T1.\"U_RegNo\" as \"Register\",T1.\"LineId\",T1.\"U_TaxCode\" as \"TaxCode\",T1.\"U_Remarks\" as \"Remarks\",T1.\"U_College\",T1.\"U_Major\",T1.\"U_Scholarship\",T1.\"U_Status\",T0.\"U_DocType\",T1.\"U_CancelType\",T1.\"U_BaseLine\",T1.\"U_BaseDoc\",coalesce(T1.\"U_InvNum\",0) as \"U_InvNum\",coalesce(T1.\"U_InvEntry\",0) as \"U_InvEntry\",coalesce(T1.\"U_MemoNum\",0) as \"U_MemoNum\",coalesce(T1.\"U_MemoEntry\",0) as \"U_MemoEntry\" ,T3.\"U_Semester\",T1.\"U_HDiscount\",(T1.\"U_HDiscount\" / T1.\"U_DocTotal\") * 100 as \"HDiscountPC\",T1.\"U_LDiscount\",T1.\"U_Remarks\",T1.\"U_Freight1\" ,T1.\"U_Freight2\" ,T1.\"U_Freight3\" ,T1.\"U_Freight4\" ,T1.\"U_Freight5\" ,T1.\"U_Freight6\" ,T1.\"U_Freight7\",T1.\"U_Freight8\",T1.\"U_Freight9\" ,T1.\"U_Freight10\",T1.\"U_HasRepeat\",T1.\"U_SchDiscount\",T1.\"U_DiscountGL\"   from \"@OING\" T0 inner join \"@ING1\" T1 on T0.\"DocEntry\" = T1.\"DocEntry\" inner join \"@OSRG\" T2 on T1.\"U_RegNo\" = T2.\"DocEntry\" inner join OCRD T3 on T3.\"CardCode\" = T2.\"U_StudentCode\" where T1.\"U_Select\" = 'Y' and ((coalesce(T1.\"U_Invoiced\",'N') = 'N' and T0.\"U_DocType\" = 'R' and (coalesce(T2.\"U_Invoiced\",'N') = 'N' or (coalesce(T2.\"U_RInvoiced\",'N') = 'N' and coalesce(T2.\"U_HasRepeat\",'N') = 'Y'))) or (coalesce(T1.\"U_Invoiced\",'N') = 'Y' and (coalesce(T2.\"U_Invoiced\",'N') = 'Y' or (coalesce(T2.\"U_RInvoiced\",'N') = 'Y' and coalesce(T2.\"U_HasRepeat\",'N') = 'Y')) and T0.\"U_DocType\" = 'C' and coalesce(T1.\"U_DocCancel\",'N') = 'N')) and T1.\"U_DocTotal\" > 0 and T0.\"DocEntry\" = " + GenNo +" order by T1.\"U_DiscountGL\"";
+                    Query = "Select TO_VARCHAR(T0.\"U_DocDate\",'" + Global._dateFormat.ToUpper() + "') as \"DocDate\",TO_VARCHAR(T0.\"U_DueDate\",'" + Global._dateFormat.ToUpper() + "') as \"DueDate\",T1.\"U_StudentCode\" as \"CardCode\",TO_VARCHAR(T2.\"U_StartDate\",'" + Global._dateFormat.ToUpper() + "') as \"StartDate\",TO_VARCHAR(T2.\"U_EndDate\",'" + Global._dateFormat.ToUpper() + "') as \"EndDate\",T1.\"U_RegNo\" as \"Register\",T1.\"LineId\",T1.\"U_TaxCode\" as \"TaxCode\",T1.\"U_Remarks\" as \"Remarks\",T1.\"U_College\",T1.\"U_Major\",T1.\"U_Scholarship\",T1.\"U_Status\",T0.\"U_DocType\",T1.\"U_CancelType\",T1.\"U_BaseLine\",T1.\"U_BaseDoc\",coalesce(T1.\"U_InvNum\",0) as \"U_InvNum\",coalesce(T1.\"U_InvEntry\",0) as \"U_InvEntry\",coalesce(T1.\"U_MemoNum\",0) as \"U_MemoNum\",coalesce(T1.\"U_MemoEntry\",0) as \"U_MemoEntry\" ,T3.\"U_Semester\",T1.\"U_HDiscount\",(T1.\"U_HDiscount\" / T1.\"U_DocTotal\") * 100 as \"HDiscountPC\",T1.\"U_LDiscount\",T1.\"U_Remarks\",T1.\"U_Freight1\" ,T1.\"U_Freight2\" ,T1.\"U_Freight3\" ,T1.\"U_Freight4\" ,T1.\"U_Freight5\" ,T1.\"U_Freight6\" ,T1.\"U_Freight7\",T1.\"U_Freight8\",T1.\"U_Freight9\" ,T1.\"U_Freight10\",T1.\"U_HasRepeat\",T1.\"U_SchDiscount\",T1.\"U_DiscountGL\",T3.\"U_SchrCHours\",T3.\"U_AttmptCHours\",(Select Sum(X1.\"U_Credits\") from \"@SRG1\" X1 where X1.\"DocEntry\" = T2.\"DocEntry\" and X1.\"U_Total\" > 0 ) As \"TotalCredits\"   from \"@OING\" T0 inner join \"@ING1\" T1 on T0.\"DocEntry\" = T1.\"DocEntry\" inner join \"@OSRG\" T2 on T1.\"U_RegNo\" = T2.\"DocEntry\" inner join OCRD T3 on T3.\"CardCode\" = T2.\"U_StudentCode\" where T1.\"U_Select\" = 'Y' and ((coalesce(T1.\"U_Invoiced\",'N') = 'N' and T0.\"U_DocType\" = 'R' and (coalesce(T2.\"U_Invoiced\",'N') = 'N' or (coalesce(T2.\"U_RInvoiced\",'N') = 'N' and coalesce(T2.\"U_HasRepeat\",'N') = 'Y'))) or (coalesce(T1.\"U_Invoiced\",'N') = 'Y' and (coalesce(T2.\"U_Invoiced\",'N') = 'Y' or (coalesce(T2.\"U_RInvoiced\",'N') = 'Y' and coalesce(T2.\"U_HasRepeat\",'N') = 'Y')) and T0.\"U_DocType\" = 'C' and coalesce(T1.\"U_DocCancel\",'N') = 'N')) and T1.\"U_DocTotal\" > 0 and T0.\"DocEntry\" = " + GenNo +" order by T1.\"U_DiscountGL\"";
                 }
                 else
                 {
-                    Query = "Select FORMAT(T0.\"U_DocDate\",'" + Global._dateFormat + "') as \"DocDate\",FORMAT(T0.\"U_DueDate\",'" + Global._dateFormat + "') as \"DueDate\",T1.\"U_StudentCode\" as \"CardCode\",FORMAT(T2.\"U_StartDate\",'" + Global._dateFormat + "') as \"StartDate\",FORMAT(T2.\"U_EndDate\",'" + Global._dateFormat + "') as \"EndDate\",T1.\"U_RegNo\" as \"Register\",T1.\"LineId\",T1.\"U_TaxCode\" as \"TaxCode\",T1.\"U_Remarks\" as \"Remarks\",T1.\"U_College\",T1.\"U_Major\",T1.\"U_Scholarship\",T1.\"U_Status\",T0.\"U_DocType\",T1.\"U_CancelType\",T1.\"U_BaseLine\",T1.\"U_BaseDoc\",coalesce(T1.\"U_InvNum\",0) as \"U_InvNum\",coalesce(T1.\"U_InvEntry\",0) as \"U_InvEntry\",coalesce(T1.\"U_MemoNum\",0) as \"U_MemoNum\",coalesce(T1.\"U_MemoEntry\",0) as \"U_MemoEntry\" ,T3.\"U_Semester\",T1.\"U_HDiscount\",(T1.\"U_HDiscount\" / T1.\"U_DocTotal\") * 100 as \"HDiscountPC\",T1.\"U_LDiscount\",T1.\"U_Remarks\",T1.\"U_Freight1\" ,T1.\"U_Freight2\" ,T1.\"U_Freight3\" ,T1.\"U_Freight4\" ,T1.\"U_Freight5\" ,T1.\"U_Freight6\" ,T1.\"U_Freight7\",T1.\"U_Freight8\",T1.\"U_Freight9\" ,T1.\"U_Freight10\",T1.\"U_HasRepeat\" ,T1.\"U_SchDiscount\",T1.\"U_DiscountGL\"   from \"@OING\" T0 inner join \"@ING1\" T1 on T0.\"DocEntry\" = T1.\"DocEntry\" inner join \"@OSRG\" T2 on T1.\"U_RegNo\" = T2.\"DocEntry\" inner join OCRD T3 on T3.\"CardCode\" = T2.\"U_StudentCode\" where T1.\"U_Select\" = 'Y' and ((coalesce(T1.\"U_Invoiced\",'N') = 'N' and T0.\"U_DocType\" = 'R' and (coalesce(T2.\"U_Invoiced\",'N') = 'N' or (coalesce(T2.\"U_RInvoiced\",'N') = 'N' and coalesce(T2.\"U_HasRepeat\",'N') = 'Y'))) or (coalesce(T1.\"U_Invoiced\",'N') = 'Y' and (coalesce(T2.\"U_Invoiced\",'N') = 'Y' or (coalesce(T2.\"U_RInvoiced\",'N') = 'Y' and coalesce(T2.\"U_HasRepeat\",'N') = 'Y')) and T0.\"U_DocType\" = 'C' and coalesce(T1.\"U_DocCancel\",'N') = 'N')) and T1.\"U_DocTotal\" > 0 and T0.\"DocEntry\" = " + GenNo + " order by T1.\"U_DiscountGL\"";
+                    Query = "Select FORMAT(T0.\"U_DocDate\",'" + Global._dateFormat + "') as \"DocDate\",FORMAT(T0.\"U_DueDate\",'" + Global._dateFormat + "') as \"DueDate\",T1.\"U_StudentCode\" as \"CardCode\",FORMAT(T2.\"U_StartDate\",'" + Global._dateFormat + "') as \"StartDate\",FORMAT(T2.\"U_EndDate\",'" + Global._dateFormat + "') as \"EndDate\",T1.\"U_RegNo\" as \"Register\",T1.\"LineId\",T1.\"U_TaxCode\" as \"TaxCode\",T1.\"U_Remarks\" as \"Remarks\",T1.\"U_College\",T1.\"U_Major\",T1.\"U_Scholarship\",T1.\"U_Status\",T0.\"U_DocType\",T1.\"U_CancelType\",T1.\"U_BaseLine\",T1.\"U_BaseDoc\",coalesce(T1.\"U_InvNum\",0) as \"U_InvNum\",coalesce(T1.\"U_InvEntry\",0) as \"U_InvEntry\",coalesce(T1.\"U_MemoNum\",0) as \"U_MemoNum\",coalesce(T1.\"U_MemoEntry\",0) as \"U_MemoEntry\" ,T3.\"U_Semester\",T1.\"U_HDiscount\",(T1.\"U_HDiscount\" / T1.\"U_DocTotal\") * 100 as \"HDiscountPC\",T1.\"U_LDiscount\",T1.\"U_Remarks\",T1.\"U_Freight1\" ,T1.\"U_Freight2\" ,T1.\"U_Freight3\" ,T1.\"U_Freight4\" ,T1.\"U_Freight5\" ,T1.\"U_Freight6\" ,T1.\"U_Freight7\",T1.\"U_Freight8\",T1.\"U_Freight9\" ,T1.\"U_Freight10\",T1.\"U_HasRepeat\" ,T1.\"U_SchDiscount\",T1.\"U_DiscountGL\" ,T3.\"U_SchrCHours\",T3.\"U_AttmptCHours\",(Select Sum(X1.\"U_Credits\") from \"@SRG1\" X1 where X1.\"DocEntry\" = T2.\"DocEntry\" and X1.\"U_Total\" > 0 ) As \"TotalCredits\"  from \"@OING\" T0 inner join \"@ING1\" T1 on T0.\"DocEntry\" = T1.\"DocEntry\" inner join \"@OSRG\" T2 on T1.\"U_RegNo\" = T2.\"DocEntry\" inner join OCRD T3 on T3.\"CardCode\" = T2.\"U_StudentCode\" where T1.\"U_Select\" = 'Y' and ((coalesce(T1.\"U_Invoiced\",'N') = 'N' and T0.\"U_DocType\" = 'R' and (coalesce(T2.\"U_Invoiced\",'N') = 'N' or (coalesce(T2.\"U_RInvoiced\",'N') = 'N' and coalesce(T2.\"U_HasRepeat\",'N') = 'Y'))) or (coalesce(T1.\"U_Invoiced\",'N') = 'Y' and (coalesce(T2.\"U_Invoiced\",'N') = 'Y' or (coalesce(T2.\"U_RInvoiced\",'N') = 'Y' and coalesce(T2.\"U_HasRepeat\",'N') = 'Y')) and T0.\"U_DocType\" = 'C' and coalesce(T1.\"U_DocCancel\",'N') = 'N')) and T1.\"U_DocTotal\" > 0 and T0.\"DocEntry\" = " + GenNo + " order by T1.\"U_DiscountGL\"";
                 }
                 oRec.DoQuery(Query);
                 string CardCode = "";
@@ -638,6 +638,7 @@ inner join OINV T2 on T2.""DocEntry"" = T1.""U_InvEntry""  inner join ""@OING"" 
         private bool CreateInvoice(Recordset oRec, string GenNo)
         {
             string CardCode = "";
+            double DisCount = 0;
             string[] formats = { Global._dateFormat };
             DateTime StartDate = new DateTime();
             DateTime EndDate = new DateTime();
@@ -648,17 +649,23 @@ inner join OINV T2 on T2.""DocEntry"" = T1.""U_InvEntry""  inner join ""@OING"" 
             string Line = oRec.Fields.Item("LineId").Value.ToString();
             string VatCode = oRec.Fields.Item("TaxCode").Value.ToString();
             double HDiscountPC = 0;
+            //Added By Waleed for Discount
+            double TotalCreditH = Convert.ToDouble(oRec.Fields.Item("U_SchrCHours").Value);
+            double AttempTedH = Convert.ToDouble(oRec.Fields.Item("U_AttmptCHours").Value);
+            double SemesChrs = Convert.ToDouble(oRec.Fields.Item("TotalCredits").Value);
+            if(TotalCreditH > AttempTedH)
+            {
+               // DisCount = Math.Round((SemesChrs - (TotalCreditH - AttempTedH))/ SemesChrs * 100,2);
+                DisCount = (Math.Min(SemesChrs, TotalCreditH - AttempTedH) / SemesChrs) * 100;
+            }
+
             CardCode = oRec.Fields.Item("CardCode").Value.ToString();
             Documents oDoc = Global.Comp_DI.GetBusinessObject(BoObjectTypes.oInvoices) as Documents;
             Recordset oRecCus = Global.Comp_DI.GetBusinessObject(BoObjectTypes.BoRecordset) as Recordset;
             oDoc.DocDate = StartDate;
             oDoc.DocDueDate = EndDate;
             double.TryParse(oRec.Fields.Item("HDiscountPC").Value.ToString(), out HDiscountPC);
-            //Attempted Credit Hours
-            //This Code Change By waleed
-            string remainingHours = string.Format("Select [U_SchrCHours],[U_AttmptCHours] from OCRD where [CardCode] = '" + oRec.Fields.Item("CardCode").Value.ToString() + "'").Replace("[", "\"").Replace("]", "\"");
-            oRecCus.DoQuery(remainingHours);
-            string CreditRem = oRecCus.Fields.Item("U_AttmptCHours").Value.ToString();
+            
             oDoc.CardCode = oRec.Fields.Item("CardCode").Value.ToString();
             oDoc.DiscountPercent = HDiscountPC;
             oDoc.UserFields.Fields.Item("U_SendInvoice").Value = Config.SendInvoice;
@@ -688,6 +695,7 @@ inner join OINV T2 on T2.""DocEntry"" = T1.""U_InvEntry""  inner join ""@OING"" 
                 oDoc.Expenses.ExpenseCode = Convert.ToInt32(Config.FreightCodes.Where(x => x.ScholarshipDiscount == "Y").FirstOrDefault().FreightCode);
                 oDoc.Expenses.LineTotal = Convert.ToDouble(oRec.Fields.Item("U_SchDiscount").Value.ToString()) * -1;
                 oDoc.Expenses.VatGroup = VatCode;
+               
                 oDoc.Expenses.UserFields.Fields.Item("U_SchDiscount").Value = "Y";
                 switch (Config.ScholarDim)
                 {
@@ -735,6 +743,8 @@ inner join OINV T2 on T2.""DocEntry"" = T1.""U_InvEntry""  inner join ""@OING"" 
             //if (Convert.ToInt32(oRec.Fields.Item("TrailCount").Value.ToString()) > 0 || oRec.Fields.Item("U_Status").Value.ToString().ToLower() == "retake" || oRec.Fields.Item("U_Courses").Value.ToString() == "Y")
             //{
             Recordset oRec1 = Global.Comp_DI.GetBusinessObject(BoObjectTypes.BoRecordset) as SAPbobsCOM.Recordset;
+            //Query for testing
+            string Qry = "Select T0.\"U_SubjectCode\", T0.\"U_Credits\",coalesce(T0.\"U_Price\",0) as \"UnitPrice\",T0.\"U_Total\",T0.\"U_Discount\",coalesce(T0.\"U_DiscountPC\",0) as \"U_DiscountPC\" from \"@SRG1\" T0 inner join OITM T1 on T0.\"U_SubjectCode\" = T1.\"ItemCode\" where coalesce(T0.\"U_Repeat\",'N') = '" + oRec.Fields.Item("U_HasRepeat").Value.ToString() + "' and T0.\"DocEntry\" = " + Reg;
 
             oRec1.DoQuery("Select T0.\"U_SubjectCode\", T0.\"U_Credits\",coalesce(T0.\"U_Price\",0) as \"UnitPrice\",T0.\"U_Total\",T0.\"U_Discount\",coalesce(T0.\"U_DiscountPC\",0) as \"U_DiscountPC\" from \"@SRG1\" T0 inner join OITM T1 on T0.\"U_SubjectCode\" = T1.\"ItemCode\" where coalesce(T0.\"U_Repeat\",'N') = '" + oRec.Fields.Item("U_HasRepeat").Value.ToString() + "' and T0.\"DocEntry\" = " + Reg);
             while (!oRec1.EoF)
@@ -747,10 +757,11 @@ inner join OINV T2 on T2.""DocEntry"" = T1.""U_InvEntry""  inner join ""@OING"" 
                 oDoc.Lines.UnitPrice = Convert.ToDouble(oRec1.Fields.Item("UnitPrice").Value.ToString());
                 oDoc.Lines.Quantity = Convert.ToDouble(oRec1.Fields.Item("U_Credits").Value.ToString());
                 oDoc.Lines.VatGroup = VatCode;
-                oDoc.Lines.DiscountPercent = Convert.ToDouble(oRec1.Fields.Item("U_DiscountPC").Value.ToString());
+                oDoc.Lines.DiscountPercent = DisCount;
+                //oDoc.Lines.DiscountPercent = Convert.ToDouble(oRec1.Fields.Item("U_DiscountPC").Value.ToString());
                 var B = oRec.Fields.Item("U_College").Value.ToString();
                 oDoc.Lines.UserFields.Fields.Item("U_Scholarship").Value = oRec.Fields.Item("U_Scholarship").Value.ToString();
-            oDoc.Lines.UserFields.Fields.Item("U_College").Value = oRec.Fields.Item("U_College").Value.ToString();
+                oDoc.Lines.UserFields.Fields.Item("U_College").Value = oRec.Fields.Item("U_College").Value.ToString();
 
             switch (Config.MajorDim)
                 {
@@ -779,6 +790,7 @@ inner join OINV T2 on T2.""DocEntry"" = T1.""U_InvEntry""  inner join ""@OING"" 
                 oRec1.MoveNext();
 
         }
+
             //}
 
             if (oDoc.Add() != 0)
